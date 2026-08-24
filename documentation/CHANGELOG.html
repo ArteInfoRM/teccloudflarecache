@@ -115,15 +115,12 @@
     <div class="generated-note">Generated from the Markdown source included with the module.</div>
 <h1>Changelog</h1>
 <p>All notable changes to this project are documented in this file.</p>
-<h2>[Unreleased]</h2>
-<h3>Fixed</h3>
-<ul>
-<li>Do not send an empty request body with Cloudflare API GET requests.</li>
-<li>Explain when the current storefront is not served through the configured Cloudflare zone.</li>
-<li>Reject Back Office rules when the current shop host does not belong to the selected zone.</li>
-</ul>
+<h2>[1.0.0] - 2026-08-24</h2>
 <h3>Added</h3>
 <ul>
+<li>Initial Cloudflare cache purge and monitor module.</li>
+<li>Optional purge synchronization with the PrestaShop cache-clear hook.</li>
+<li>Minimal Cache Rule manager for Back Office and configured URL bypasses.</li>
 <li>Optional public cache status URL for Docker and staging environments.</li>
 </ul>
 <h3>Changed</h3>
@@ -131,12 +128,11 @@
 <li>Document the minimum zone-scoped Cloudflare token permissions.</li>
 <li>Clarify that account-level Rulesets and Filter Lists permissions are not used.</li>
 </ul>
-<h2>[1.0.0] - 2026-08-24</h2>
-<h3>Added</h3>
+<h3>Fixed</h3>
 <ul>
-<li>Initial Cloudflare cache purge and monitor module.</li>
-<li>Optional purge synchronization with the PrestaShop cache-clear hook.</li>
-<li>Minimal Cache Rule manager for Back Office and configured URL bypasses.</li>
+<li>Do not send an empty request body with Cloudflare API GET requests.</li>
+<li>Explain when the current storefront is not served through the configured Cloudflare zone.</li>
+<li>Reject Back Office rules when the current shop host does not belong to the selected zone.</li>
 </ul>
 
 </main>
