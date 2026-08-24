@@ -1,13 +1,13 @@
 <?php
+
 /**
  * Copyright 2026 Tecnoacquisti.com
  *
  * @author    Tecnoacquisti.com <helpdesk@tecnoacquisti.com>
  * @copyright 2026 Tecnoacquisti.com
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
- * @version   1.0.0
+ * @version   1.0.1
  */
-
 if (!defined('_PS_VERSION_')) {
     exit;
 }
@@ -19,15 +19,15 @@ require_once __DIR__ . '/src/CloudflareClient.php';
  */
 class Teccloudflarecache extends Module
 {
-    const CFG_TOKEN = 'TECCFC_TOKEN';
-    const CFG_ZONE_ID = 'TECCFC_ZONE_ID';
-    const CFG_ZONE_NAME = 'TECCFC_ZONE_NAME';
-    const CFG_SYNC_WITH_PS = 'TECCFC_SYNC_WITH_PS';
-    const CFG_BYPASS_ADMIN = 'TECCFC_BYPASS_ADMIN';
-    const CFG_BYPASS_URLS = 'TECCFC_BYPASS_URLS';
-    const CFG_MONITOR_URL = 'TECCFC_MONITOR_URL';
-    const CFG_LAST_STATUS = 'TECCFC_LAST_STATUS';
-    const TOKEN_MASK = '********';
+    private const CFG_TOKEN = 'TECCFC_TOKEN';
+    private const CFG_ZONE_ID = 'TECCFC_ZONE_ID';
+    private const CFG_ZONE_NAME = 'TECCFC_ZONE_NAME';
+    private const CFG_SYNC_WITH_PS = 'TECCFC_SYNC_WITH_PS';
+    private const CFG_BYPASS_ADMIN = 'TECCFC_BYPASS_ADMIN';
+    private const CFG_BYPASS_URLS = 'TECCFC_BYPASS_URLS';
+    private const CFG_MONITOR_URL = 'TECCFC_MONITOR_URL';
+    private const CFG_LAST_STATUS = 'TECCFC_LAST_STATUS';
+    private const TOKEN_MASK = '********';
 
     /**
      * Prevents duplicate purge calls during the current PHP request.
@@ -43,7 +43,7 @@ class Teccloudflarecache extends Module
     {
         $this->name = 'teccloudflarecache';
         $this->tab = 'administration';
-        $this->version = '1.0.0';
+        $this->version = '1.0.1';
         $this->author = 'Tecnoacquisti.com';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -334,7 +334,7 @@ class Teccloudflarecache extends Module
 
         $result = $client->replaceCacheRules(
             array_merge($preservedRules, $rules),
-            isset($existing['ruleset']) && is_array($existing['ruleset']) ? $existing['ruleset'] : []
+            isset($existing['ruleset']) ? $existing['ruleset'] : []
         );
         if (!$result['success']) {
             $this->log('Cloudflare bypass rules failed: ' . $result['message'], 2);

@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.0.1] - 2026-08-24
+
+### Fixed
+
+- Align PHP file headers and visibility modifiers with PrestaShop validator requirements.
+- Simplify Cache Rules payload handling for static-analysis compatibility.
+
 ## [1.0.0] - 2026-08-24
 
 ### Added
