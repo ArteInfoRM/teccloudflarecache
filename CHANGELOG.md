@@ -6,6 +6,7 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Align all PHP license headers with PrestaShop validator ordering requirements.
 - Align PHP file headers and visibility modifiers with PrestaShop validator requirements.
 - Simplify Cache Rules payload handling for static-analysis compatibility.
 

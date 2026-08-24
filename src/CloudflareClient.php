@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2026 Tecnoacquisti.com
  *
