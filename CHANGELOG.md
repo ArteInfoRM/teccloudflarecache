@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.0.2] - 2026-08-24
+
+### Fixed
+
+- Create Back Office cache bypass rules with the current store host and base path.
+- Match both the Back Office directory URL and its nested paths.
+
 ## [1.0.1] - 2026-08-24
 
 ### Fixed

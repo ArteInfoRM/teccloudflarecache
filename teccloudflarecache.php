@@ -5,7 +5,7 @@
  * @author    Tecnoacquisti.com <helpdesk@tecnoacquisti.com>
  * @copyright 2026 Tecnoacquisti.com
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
- * @version   1.0.1
+ * @version   1.0.2
  */
 if (!defined('_PS_VERSION_')) {
     exit;
@@ -42,7 +42,7 @@ class Teccloudflarecache extends Module
     {
         $this->name = 'teccloudflarecache';
         $this->tab = 'administration';
-        $this->version = '1.0.1';
+        $this->version = '1.0.2';
         $this->author = 'Tecnoacquisti.com';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -352,9 +352,15 @@ class Teccloudflarecache extends Module
         $rules = [];
         if ((bool) Configuration::get(self::CFG_BYPASS_ADMIN)) {
             $adminDirectory = basename((string) _PS_ADMIN_DIR_);
+            $storeUrl = $this->context->link->getBaseLink();
+            $host = strtolower((string) parse_url($storeUrl, PHP_URL_HOST));
+            $basePath = (string) parse_url($storeUrl, PHP_URL_PATH);
+            $adminPath = rtrim($basePath, '/') . '/' . $adminDirectory;
             $rules[] = $this->buildBypassRule(
                 'admin',
-                '(http.request.uri.path starts_with "/' . $this->escapeExpressionString($adminDirectory) . '")'
+                '(http.host eq "' . $this->escapeExpressionString($host) . '" and (http.request.uri.path eq "'
+                . $this->escapeExpressionString($adminPath) . '" or http.request.uri.path wildcard "'
+                . $this->escapeExpressionString($adminPath) . '/*"))'
             );
         }
 

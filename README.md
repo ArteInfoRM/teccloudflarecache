@@ -58,5 +58,7 @@ fragments, credentials, ports, and wildcard characters outside the final path
 position are rejected.
 
 The optional Back Office exclusion is only applied when the current PrestaShop
-hostname belongs to the configured Cloudflare zone. This prevents a local or
-staging store from changing rules for an unrelated production zone.
+hostname belongs to the configured Cloudflare zone. It creates an exact-host
+rule for the current Back Office directory, including any PrestaShop base path.
+This prevents a local or staging store from changing rules for an unrelated
+production zone.
