@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>teccloudflarecache - README</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --text: #1f2933;
+            --muted: #5f6b7a;
+            --border: #d8dee6;
+            --panel: #f6f8fa;
+            --accent: #0b7285;
+        }
+        body {
+            margin: 0;
+            background: #fff;
+            color: var(--text);
+            font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+        main {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 32px 24px 56px;
+        }
+        h1, h2, h3, h4 {
+            line-height: 1.25;
+            margin: 1.8em 0 .6em;
+        }
+        h1 {
+            margin-top: 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            font-size: 2rem;
+        }
+        h2 {
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+            font-size: 1.45rem;
+        }
+        h3 {
+            font-size: 1.18rem;
+        }
+        p {
+            margin: .7em 0;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        blockquote {
+            margin: 1em 0;
+            padding: .7em 1em;
+            color: var(--muted);
+            border-left: 4px solid var(--border);
+            background: var(--panel);
+        }
+        code {
+            padding: .15em .35em;
+            border-radius: 4px;
+            background: var(--panel);
+            font-family: Consolas, Monaco, "Courier New", monospace;
+            font-size: .92em;
+        }
+        pre {
+            overflow: auto;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--panel);
+        }
+        pre code {
+            padding: 0;
+            background: transparent;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+        }
+        th, td {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+        th {
+            background: var(--panel);
+            text-align: left;
+        }
+        ul, ol {
+            padding-left: 1.5em;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid var(--border);
+            margin: 2em 0;
+        }
+        .generated-note {
+            margin-bottom: 24px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--panel);
+            color: var(--muted);
+            font-size: .92em;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="generated-note">Generated from the Markdown source included with the module.</div>
+<h1>Tec Cloudflare Cache</h1>
+<p>Tec Cloudflare Cache is a PrestaShop 1.7 to 9 module by Tecnoacquisti.com®. It provides Cloudflare cache purge, connection verification, safe synchronization with the PrestaShop cache-clear hook, and an optional minimal Cache Rule manager.</p>
+<h2>Requirements</h2>
+<ul>
+<li>PrestaShop 1.7.0 or later.</li>
+<li>A Cloudflare API Token scoped to the selected zone.</li>
+<li><code>Zone &gt; Zone &gt; Read</code> to verify the selected zone.</li>
+<li><code>Zone &gt; Cache Purge &gt; Edit</code> for purge operations.</li>
+<li><code>Zone &gt; Cache Rules &gt; Edit</code> to apply bypass rules.</li>
+</ul>
+<p>The module does not use account-level Rulesets or Filter Lists. Restrict the token to the single Cloudflare zone managed by this PrestaShop installation.</p>
+<h2>Safety model</h2>
+<p>Cloudflare operations are optional. If credentials are absent or an API request fails, PrestaShop cache clearing continues normally. The module records only short diagnostic outcomes in the PrestaShop log and never logs API tokens.</p>
+<p>The Rule Manager only creates rules identified with the <code>teccloudflarecache:</code> prefix and preserves other Cloudflare Cache Rules. Cloudflare Free allows ten Cache Rules in total; the module validates the available capacity before it submits changes.</p>
+<h2>Configuration</h2>
+<p>Enter the API Token, Zone ID, and zone name. The token is rendered as a mask after saving. Enable synchronization only after the connection test succeeds.</p>
+<h3>Cache status monitoring</h3>
+<p>The Test storefront cache action reads the <code>CF-Cache-Status</code> and <code>Age</code> response headers. For a local Docker installation, the PrestaShop hostname may not be proxied through Cloudflare. In that case, set Cache status URL to an absolute, public URL in the selected Cloudflare zone, for example:</p>
+<pre><code>https://www.example.com/</code></pre>
+<p>If Cloudflare does not serve the configured URL, the module reports that the cache status header is unavailable instead of treating this as a module error.</p>
+<p>To exclude URLs from cache, enter one absolute URL or trailing-path wildcard per line, for example:</p>
+<pre><code>https://www.example.com/mag/*
+https://www.example.com/private-document.pdf</code></pre>
+<p>The host must match the configured zone or one of its subdomains. Query strings, fragments, credentials, ports, and wildcard characters outside the final path position are rejected.</p>
+<p>The optional Back Office exclusion is only applied when the current PrestaShop hostname belongs to the configured Cloudflare zone. This prevents a local or staging store from changing rules for an unrelated production zone.</p>
+
+</main>
+</body>
+</html>

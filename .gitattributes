@@ -1,0 +1,4 @@
+config*.xml export-ignore
+/dist/ export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
